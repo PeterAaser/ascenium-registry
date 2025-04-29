@@ -15,7 +15,6 @@ cat > $@ << EOF
 scala_library(
     name = "plugin",
     srcs = glob([
-        "plugin/src/main/scala/**/*.scala",
         "plugin/src/main/scala-2/**/*.scala",
     ]),
     deps = [
@@ -39,7 +38,6 @@ scala_library(
     name = "firrtl",
     srcs = glob([
         "firrtl/src/main/scala/**/*.scala",
-        "firrtl/src/main/scala-2/**/*.scala",
     ]),
     scalacopts = [
         "-deprecation",
@@ -69,7 +67,6 @@ scala_macro_library(
     name = "macros",
     srcs = glob([
         "macros/src/main/scala/**/*.scala",
-        "macros/src/main/scala-2/**/*.scala",
     ]),
     scalacopts = [
         "-deprecation",
@@ -113,7 +110,6 @@ scala_library(
     name = "svsim",
     srcs = glob([
         "svsim/src/main/scala/**/*.scala",
-        "svsim/src/main/scala-2/**/*.scala",
     ]),
     resources = [
         "svsim/src/main/resources/simulation-driver.cpp",

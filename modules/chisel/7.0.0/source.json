@@ -3,7 +3,7 @@
     "strip_prefix": "chisel-c2936a4bb2a01c4ca9a5f89492a6f58b196b9de4",
     "integrity": "sha256-OxD3wKBIaNFxARNY5y1j+qsrkak6UUJZgWZa3iYGbzI=",
     "overlay": {
-        "BUILD.bazel": "sha256-WXrhqPQ313avJMrEQArLCaOTb4e/g0m2nB5VhmhUHlo=",
+        "BUILD.bazel": "sha256-b7K93FyY2D7kyF3VTqslefZrW3wb1FiSTiRwNYZb9+Y=",
         "MODULE.bazel": "sha256-rFpUjV6f9AWK7XcKJP7ch3T9RJwXVrhdc+yDS/M+BDc="
     },
     "patches": {
