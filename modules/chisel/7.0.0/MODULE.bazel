@@ -57,6 +57,5 @@ maven.install(
     artifacts = ["{}_{}:{}".format(dep, SCALA_VERSION_SHORT, version) for (dep, version) in MAVEN_SHORT_DEPS.items()] +
                 ["{}:{}".format(dep, version) for (dep, version) in MAVEN_DEPS.items()],
     fetch_sources = True,
-    lock_file = "//:maven_install.json",
 )
 use_repo(maven, "maven")

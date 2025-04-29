@@ -4,7 +4,7 @@
     "integrity": "sha256-OxD3wKBIaNFxARNY5y1j+qsrkak6UUJZgWZa3iYGbzI=",
     "overlay": {
         "BUILD.bazel": "sha256-WXrhqPQ313avJMrEQArLCaOTb4e/g0m2nB5VhmhUHlo=",
-        "MODULE.bazel": "sha256-GRvyY1G50OI0El0ebruZhqi1iriDwJgK59UWxqukb3Q="
+        "MODULE.bazel": "sha256-rFpUjV6f9AWK7XcKJP7ch3T9RJwXVrhdc+yDS/M+BDc="
     },
     "patches": {
         "BuildInfo.scala.patch": "sha256-jb5ckkCLDtjetOUxs2n1j9xT2a8NKioVlpcT9rFj6Hs="
