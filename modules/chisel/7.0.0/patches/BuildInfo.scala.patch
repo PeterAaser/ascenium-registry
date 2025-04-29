@@ -1,0 +1,15 @@
+--- /dev/null
++++ core/src/main/scala/chisel3/BuildInfo.scala
+@@ -0,0 +1,12 @@
++package chisel3
++case object BuildInfo {
++  val buildInfoPackage: String = "chisel3"
++  val version: String = "c2936a4bb2a01c4ca9a5f89492a6f58b196b9de4-BAZEL"
++  val scalaVersion: String = "2.13.16"
++  val firtoolVersion: scala.Option[String] = Some("1.108.0")
++  override val toString: String = {
++    "buildInfoPackage: %s, version: %s, scalaVersion: %s, firtoolVersion %s".format(
++        buildInfoPackage, version, scalaVersion, firtoolVersion
++    )
++  }
++}

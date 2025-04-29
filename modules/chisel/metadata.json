@@ -1,0 +1,18 @@
+{
+    "homepage": "https://www.chisel-lang.org/",
+    "maintainers": [
+        {
+            "email": "9824853+hovind@users.noreply.github.com",
+            "github": "hovind",
+            "github_user_id": 9824853,
+            "name": "Hovind"
+        }
+    ],
+    "repository": [
+        "github:chipsalliance/chisel"
+    ],
+    "versions": [
+        "7.0.0"
+    ],
+    "yanked_versions": {}
+}

@@ -1,0 +1,165 @@
+load("@rules_scala//scala:scala.bzl", "scala_library", "scala_macro_library")
+
+genrule(
+    name = "gen-scalac-plugin.xml",
+    outs = ["scalac-plugin.xml"],
+    cmd = """
+cat > $@ << EOF
+<plugin>
+    <name>plugin</name>
+    <classname>chisel3.internal.plugin.ChiselPlugin</classname>
+</plugin>
+""",
+)
+
+scala_library(
+    name = "plugin",
+    srcs = glob([
+        "plugin/src/main/scala/**/*.scala",
+        "plugin/src/main/scala-2/**/*.scala",
+    ]),
+    deps = [
+        "@maven//:org_scala_lang_scala_compiler",
+        "@maven//:org_scala_lang_scala_library",
+        "@maven//:org_scala_lang_scala_reflect",
+    ],
+    resource_strip_prefix = package_name(),
+    resources = [
+        ":gen-scalac-plugin.xml",
+    ],
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+scala_library(
+    name = "firrtl",
+    srcs = glob([
+        "firrtl/src/main/scala/**/*.scala",
+        "firrtl/src/main/scala-2/**/*.scala",
+    ]),
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+        "-unchecked",
+        "-language:reflectiveCalls",
+        "-language:existentials",
+        "-language:implicitConversions",
+        "-Yrangepos",  # required by SemanticDB compiler plugin
+        "-Xsource:3",
+        "-Xsource-features:infer-override",
+    ],
+    deps = [
+        "@maven//:org_apache_commons_commons_text",
+        "@maven//:com_github_scopt_scopt_2_13",
+        "@maven//:org_json4s_json4s_ast_2_13",
+        "@maven//:org_json4s_json4s_core_2_13",
+        "@maven//:org_json4s_json4s_native_2_13",
+        "@maven//:org_json4s_json4s_native_core_2_13",
+        "@maven//:com_lihaoyi_os_lib_2_13",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+scala_macro_library(
+    name = "macros",
+    srcs = glob([
+        "macros/src/main/scala/**/*.scala",
+        "macros/src/main/scala-2/**/*.scala",
+    ]),
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+scala_macro_library(
+    name = "core",
+    srcs = glob([
+        "core/src/main/scala/**/*.scala",
+        "core/src/main/scala-2/**/*.scala",
+    ]),
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+        "-explaintypes",
+        "-language:reflectiveCalls",
+        "-unchecked",
+        "-Xcheckinit",
+        "-Xlint:infer-any",
+        "-Xsource:3",
+    ],
+    deps = [
+        ":firrtl",
+        ":macros",
+        "@maven//:com_lihaoyi_os_lib_2_13",
+        "@maven//:com_lihaoyi_upickle_2_13",
+        "@maven//:com_lihaoyi_upickle_core_2_13",
+        "@maven//:com_lihaoyi_upickle_implicits_2_13",
+        "@maven//:com_lihaoyi_ujson_2_13",
+        "@maven//:com_lihaoyi_geny_2_13",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+scala_library(
+    name = "svsim",
+    srcs = glob([
+        "svsim/src/main/scala/**/*.scala",
+        "svsim/src/main/scala-2/**/*.scala",
+    ]),
+    resources = [
+        "svsim/src/main/resources/simulation-driver.cpp",
+    ],
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+        "-Xsource:3",
+        "-Xsource-features:case-apply-copy-access",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+scala_macro_library(
+    name = "chisel",
+    srcs = glob([
+        "src/main/scala/**/*.scala",
+        "src/main/scala-2/**/*.scala",
+    ]),
+    scalacopts = [
+        "-deprecation",
+        "-feature",
+        "-Ymacro-annotations",
+    ],
+    deps = [
+        ":core",
+        ":firrtl",
+        ":macros",
+        ":svsim",
+        "@rules_scala//testing/toolchain:scalatest_classpath",
+        "@maven//:com_github_scopt_scopt_2_13",
+        "@maven//:com_lihaoyi_os_lib_2_13",
+        "@maven//:com_lihaoyi_upickle_2_13",
+        "@maven//:com_lihaoyi_upickle_core_2_13",
+        "@maven//:com_lihaoyi_upickle_implicits_2_13",
+        "@maven//:com_lihaoyi_ujson_2_13",
+        "@maven//:com_lihaoyi_geny_2_13",
+        "@maven//:org_json4s_json4s_ast_2_13",
+        "@maven//:org_json4s_json4s_core_2_13",
+        "@maven//:org_json4s_json4s_native_2_13",
+        "@maven//:org_json4s_json4s_native_core_2_13",
+        "@maven//:org_chipsalliance_firtool_resolver_2_13",
+    ],
+    plugins = [
+        ":plugin",
+    ],
+    visibility = ["//visibility:public"],
+)

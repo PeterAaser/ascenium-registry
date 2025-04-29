@@ -1,0 +1,12 @@
+{
+    "url": "https://github.com/chipsalliance/chisel/archive/c2936a4bb2a01c4ca9a5f89492a6f58b196b9de4.zip",
+    "strip_prefix": "chisel-c2936a4bb2a01c4ca9a5f89492a6f58b196b9de4",
+    "integrity": "sha256-OxD3wKBIaNFxARNY5y1j+qsrkak6UUJZgWZa3iYGbzI=",
+    "overlay": {
+        "BUILD.bazel": "sha256-WXrhqPQ313avJMrEQArLCaOTb4e/g0m2nB5VhmhUHlo=",
+        "MODULE.bazel": "sha256-GRvyY1G50OI0El0ebruZhqi1iriDwJgK59UWxqukb3Q="
+    },
+    "patches": {
+        "BuildInfo.scala.patch": "sha256-jb5ckkCLDtjetOUxs2n1j9xT2a8NKioVlpcT9rFj6Hs="
+    }
+}
