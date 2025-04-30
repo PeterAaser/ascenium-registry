@@ -1,0 +1,18 @@
+{
+    "homepage": "https://systemc.org/",
+    "maintainers": [
+        {
+            "email": "9824853+hovind@users.noreply.github.com",
+            "github": "hovind",
+            "github_user_id": 9824853,
+            "name": "Hovind"
+        }
+    ],
+    "repository": [
+        "github:accellera-official/systemc"
+    ],
+    "versions": [
+        "3.0.1"
+    ],
+    "yanked_versions": {}
+}

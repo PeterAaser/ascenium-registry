@@ -1,0 +1,9 @@
+{
+    "url": "https://github.com/accellera-official/systemc/archive/refs/tags/3.0.1.tar.gz",
+    "strip_prefix": "systemc-3.0.1",
+    "integrity": "sha256-0Hdl0NL/1sAXZ4gNDGqvU82Uh5dfiYxZP//9cTJY/Ls=",
+    "overlay": {
+        "BUILD.bazel": "sha256-hPE8gEjD5UJjEkOqTr6eBKCfF4+4CR0gr5VKA2yh+Nc=",
+        "MODULE.bazel": "sha256-jY0DHZ3uPbXhelCWq8gJ3ZuEgFBa/kPbKAsUOi+iDfg="
+    }
+}
