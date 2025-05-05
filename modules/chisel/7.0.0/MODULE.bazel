@@ -54,8 +54,9 @@ MAVEN_SHORT_DEPS = {
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
+    name = "chisel_maven",
     artifacts = ["{}_{}:{}".format(dep, SCALA_VERSION_SHORT, version) for (dep, version) in MAVEN_SHORT_DEPS.items()] +
                 ["{}:{}".format(dep, version) for (dep, version) in MAVEN_DEPS.items()],
     fetch_sources = True,
 )
-use_repo(maven, "maven")
+use_repo(maven, "chisel_maven")
