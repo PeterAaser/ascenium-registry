@@ -12,7 +12,8 @@
         "github:chipsalliance/chisel"
     ],
     "versions": [
-        "7.0.0"
+        "7.0.0",
+        "7.0.0-RC1"
     ],
     "yanked_versions": {}
 }

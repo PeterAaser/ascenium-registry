@@ -1,0 +1,12 @@
+{
+    "url": "https://github.com/chipsalliance/chisel/archive/refs/tags/v7.0.0-RC1.tar.gz",
+    "strip_prefix": "chisel-7.0.0-RC1",
+    "integrity": "sha256-yZYAgRjf4+JQ6II2svDAdje0d5y56S+6Od3CIF9j5d0=",
+    "overlay": {
+        "BUILD.bazel": "sha256-WNcOOR+XUXa8zjM8mm5GrHfqX4AVNVI9wMuN7mP6AZE=",
+        "MODULE.bazel": "sha256-xgOzwMK/1i+01M/9Q/Cj2IijIC50nFJBRPKRzZO9kiI="
+    },
+    "patches": {
+        "BuildInfo.scala.patch": "sha256-ixYlkebNORAjTi46SbEtoqEnCyg93AgBtDPWnmbHPbo="
+    }
+}
