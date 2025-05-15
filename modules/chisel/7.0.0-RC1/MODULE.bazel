@@ -5,13 +5,7 @@ module(
 )
 
 bazel_dep(name = "rules_jvm_external", version = "6.4")
-bazel_dep(name = "rules_scala")
-
-git_override(
-    module_name = "rules_scala",
-    commit = "84e3f449011cc2aca7f518ddd8dc7f25a46f8515",
-    remote = "https://github.com/bazelbuild/rules_scala",
-)
+bazel_dep(name = "rules_scala", version = "7.0.0")
 
 SCALA_VERSION = "2.13.16"
 
