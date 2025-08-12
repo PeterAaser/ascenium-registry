@@ -309,7 +309,7 @@ cc_library(
             "-std=c++17",
             "-ffp-contract=off",
         ],
-    }),
+    }) + ["-DVL_USER_FATAL"],
     includes = ["include"],
     linkopts = select({
         "@platforms//os:windows": [],
