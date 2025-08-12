@@ -276,7 +276,7 @@ cc_library(
         "include/gtkwave/fstapi.h",
         "include/gtkwave/lz4.h",
         "include/gtkwave/wavealloca.h",
-        "include/verilated.cpp",
+        # "include/verilated.cpp",
         "include/verilated_fst_c.cpp",
         "include/verilated_imp.h",
         "include/verilated_syms.h",
