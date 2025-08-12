@@ -2,7 +2,7 @@
 
 module(
     name = "verilator",
-    version = "5.034.ar.2",
+    version = "5.034.ar.1",
     bazel_compatibility = [">=7.2.1"],
 )
 
