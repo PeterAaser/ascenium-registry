@@ -358,7 +358,7 @@ cc_binary(
             "-std=c++17",
             "-ffp-contract=off",
         ],
-    }),
+    }) + ["-DVL_USER_FATAL"],
     linkopts = select({
         "@platforms//os:linux": [
             "-lpthread",
