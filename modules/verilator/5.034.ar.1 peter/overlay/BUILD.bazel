@@ -81,6 +81,7 @@ verilator_astgen(
         "V3Ast__gen_impl.h",
         "V3Ast__gen_macros.h",
         "V3Ast__gen_report.txt",
+        # break something
         # "V3Ast__gen_type_enum.h",
         # "V3Ast__gen_type_info.h",
         # "V3Ast__gen_type_tests.h",
@@ -103,16 +104,18 @@ verilator_astgen(
         "--astdef",
         "V3AstNodeExpr.h",
         "--astdef",
-        "V3AstNodeOther.h",
-        "--dfgdef",
-        "V3DfgVertices.h",
-        "--classes",
+        # break something
+        # "V3AstNodeOther.h",
+        # "--dfgdef",
+        # "V3DfgVertices.h",
+        # "--classes",
     ],
     astgen = "src/astgen",
 )
 
 verilator_astgen(
-    name = "verilator_astgen_const",
+    # break something
+    name = "verilator_astgen_const.error",
     srcs = [
         "src/V3Ast.h",
         "src/V3AstNodeDType.h",
@@ -244,9 +247,10 @@ cc_library(
 cc_library(
     name = "vltstd",
     hdrs = [
-        "include/vltstd/sv_vpi_user.h",
-        "include/vltstd/svdpi.h",
-        "include/vltstd/vpi_user.h",
+        # break something
+        # "include/vltstd/sv_vpi_user.h",
+        # "include/vltstd/svdpi.h",
+        # "include/vltstd/vpi_user.h",
     ],
     strip_include_prefix = "include/vltstd",
 )
@@ -317,7 +321,8 @@ cc_library(
             "-lpthread",
         ],
     }),
-    strip_include_prefix = "include/",
+    # break something
+    # strip_include_prefix = "include/",
     textual_hdrs = [
         "include/gtkwave/fastlz.c",
         "include/gtkwave/fstapi.c",
