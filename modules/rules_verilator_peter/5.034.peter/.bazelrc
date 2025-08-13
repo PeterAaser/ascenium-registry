@@ -1,0 +1,69 @@
+common --enable_workspace
+common --incompatible_disallow_empty_glob=false
+common --incompatible_strict_action_env
+
+# Custom registry
+common --registry=https://bcr.bazel.build
+# common --registry=https://raw.githubusercontent.com/Pinata-Consulting/ascenium-registry/d7c6d84ec28e367e7907e6b5122157c5c809d416/
+
+common --registry=https://raw.github.com/PeterAaser/ascenium-registry/18bf62a2872429dde1d7c9ff968f8ba415a227e5
+
+common:silent --noshow_progress
+common:silent --ui_event_filters=,+error,+fail
+common:silent --show_result=0
+common:silent --logging=0
+
+build:debug -c dbg
+build:debug --features=oso_prefix_is_pwd
+build:debug --verbose_failures
+build:debug --remote_upload_local_results=false
+
+build:upload --remote_upload_local_results=true
+
+build:release -c opt
+
+# Disable warnings for external dependencies
+# https://github.com/bazelbuild/bazel/commit/08936aecb96f2937c61bdedfebcf1c5a41a0786d
+build:release --features=external_include_paths
+
+build --remote_cache=https://storage.googleapis.com/ascenium-hardware-bazel
+build --remote_cache_compression=true
+
+common --credential_helper=*.googleapis.com=%workspace%/workflow/bin/cred.sh
+
+# Mostly users and build systems want the release build
+build --config=release
+run --config=release
+test --config=release
+
+# Anti-spam
+build --output_filter='^//((?!(@@zlib~//):).)*$'
+
+# Tune these to fit our needs
+# build --experimental_disk_cache_gc_max_size=100G
+# For now we need to figure out how big the cache is after 14 days
+build --experimental_disk_cache_gc_max_age=14d
+
+# This is necessary to work around a 'conflicting action' error that we get
+# when generating the compilation database for test targets. Hopefully we can
+# remove it at some point.
+common --experimental_retain_test_configuration_across_testonly
+
+# Stamping the manifest changes the name of `scala-compiler-2.13.16.jar` to
+# `processed_scala-compiler-2.13.16.jar`, which keeps `bloop` from recognizing
+# it.
+# Read more:
+# https://web.archive.org/web/20250624074624/https://github.com/scalacenter/bloop/blob/b90aaa82e0799b8783b1812f4c07961d4c47ec30/backend/src/main/scala/bloop/ScalaInstance.scala#L73-L75
+# https://web.archive.org/web/20250624074941/https://github.com/bazel-contrib/rules_jvm_external/issues/786
+common --@rules_jvm_external//settings:stamp_manifest=false
+
+# Force deterministic __DATE__ and __TIME__ for reproducible builds
+# We first undefine to avoid warning spam
+build --cxxopt=-Wno-builtin-macro-redefined
+build --cxxopt=-U__DATE__ 
+build --cxxopt=-U__TIME__ 
+build --cxxopt=-D__DATE__="\"Redacted\"" 
+build --cxxopt=-D__TIME__="\"Redacted\""
+
+# https://bazel.build/configure/best-practices#bazelrc-file
+try-import %workspace%/user.bazelrc
