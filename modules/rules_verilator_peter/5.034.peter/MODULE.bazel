@@ -1,5 +1,5 @@
 module(
-    name = "rules_verilator",
+    name = "rules_verilator_peter",
     version = "5.034.peter",
     bazel_compatibility = [">=7.5.0"],
     repo_name = "rules_hdl",
