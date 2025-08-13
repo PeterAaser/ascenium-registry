@@ -1,5 +1,5 @@
 {
-    "homepage": "https://github.com/Pinata-Consulting/rules_verilator/",
+    "homepage": "https://github.com/PeterAaser/rules_verilator",
     "maintainers": [
         {
             "email": "9824853+hovind@users.noreply.github.com",
@@ -9,7 +9,7 @@
         }
     ],
     "repository": [
-        "github:Pinata-Consulting/rules_verilator"
+        "github:PeterAaser/rules_verilator"
     ],
     "versions": [
         "5.034.peter"
