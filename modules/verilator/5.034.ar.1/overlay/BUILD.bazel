@@ -225,6 +225,7 @@ cc_library(
         "-DDEFENV_VERILATOR_ROOT=\\\"@invalid@\\\"",
         # TODO: Remove these once upstream fixes these warnings
         "-Wno-unneeded-internal-declaration",
+        "-DVL_USER_FATAL",
     ],
     defines = ["YYDEBUG"],
     strip_include_prefix = "src/",
@@ -257,14 +258,14 @@ cc_library(
         "include/verilated_fst_sc.cpp",
         "include/verilated_fst_sc.h",
         "include/verilated_sc.h",
+        "include/verilated_sc_trace.h",
         "include/verilated_vcd_sc.cpp",
         "include/verilated_vcd_sc.h",
-        "include/verilated_sc_trace.h",
     ],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
     deps = [
-        "@systemc//:systemc",
+        "@systemc",
     ],
 )
 
@@ -309,7 +310,7 @@ cc_library(
             "-std=c++17",
             "-ffp-contract=off",
         ],
-    }),
+    }) + ["-DVL_USER_FATAL"],
     includes = ["include"],
     linkopts = select({
         "@platforms//os:windows": [],
@@ -358,7 +359,7 @@ cc_binary(
             "-std=c++17",
             "-ffp-contract=off",
         ],
-    }),
+    }) + ["-DVL_USER_FATAL"],
     linkopts = select({
         "@platforms//os:linux": [
             "-lpthread",
